@@ -3,7 +3,7 @@
         <h3>{{ weather.label }}</h3>
         <p class="temperature">{{ weather.temperature }}&deg;c</p>
         <p class="info">
-            <img src="https://placeimg.com/20/20/any" alt="">
+            <img :src="weather.icon" alt="">
             <span>습도 {{ weather.humidity }}</span>
             <span>바람 {{ weather.wind }}m/s</span>
         </p>

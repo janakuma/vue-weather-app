@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import weatherMixin from "@/mixins/weatherMixin";
 import ContentHeader from './ContentHeader';
 import CitySelector from './CitySelector';
 import WeatherList from './WeatherList';
@@ -18,17 +19,21 @@ export default {
         CitySelector,
         WeatherList
     },
+    mixins: [
+        weatherMixin
+    ],
     data() {
         return {
             weatherList: []
-
         }
     },
     methods: {
-        selectCity(city) {
-            console.log('parent recieved', city);
+        async selectCity(city) {
+            //console.log('parent recieved', city);
             if(city.selected) {
-                this.weatherList.push(city);
+                const weather = await this.getWeatherInfo(city);
+                this.weatherList.push(weather);
+
             } else {
                 const index = this.weatherList.findIndex(weather =>
                     weather.code === city.code
