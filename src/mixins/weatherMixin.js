@@ -6,7 +6,8 @@ const weatherMixin = {
     },
     methods: {
         async getWeatherInfo(city) {
-            const APP_KEY="d8f89c1308b7c1760d6cb2e1eb9b561d"
+            console.log(process.env.VUE_APP_API_KEY);
+            const APP_KEY = process.env.VUE_APP_API_KEY;
             const url = `http://api.openweathermap.org/data/2.5/weather?q=${city.code}&appid=${APP_KEY}`;
             const res = await axios.get(url);
             const { main, wind, weather } = res.data;
